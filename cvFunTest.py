@@ -16,7 +16,9 @@ class creationTest(unittest.TestCase):
         self.browser.get('http://127.0.0.1:8000/cv')
 
         #she sees and clicks on a new cv button
-        
+        new_cv = self.browser.find_element_by_class_name('new_cv_button').text
+        self.assertIn('new', new_cv)
+
 
         #she logs in so she knows its her cv shes making
 
