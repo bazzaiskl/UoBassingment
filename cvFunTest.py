@@ -4,7 +4,6 @@ import time
 import unittest
 
 class creationTest(unittest.TestCase):
-    url = 'http://127.0.0.1:8000/cv'
     def setUp(self):
         self.browser = webdriver.Firefox()
 
@@ -14,9 +13,10 @@ class creationTest(unittest.TestCase):
     def test_can_add_info(self):
         #stacey wants to make an online cv cos she needs a job (broke af)
         #she goes to a website to start creating
-        self.browser.get(url)
+        self.browser.get('http://127.0.0.1:8000/cv')
 
         #she sees and clicks on a new cv button
+        
 
         #she logs in so she knows its her cv shes making
 
@@ -43,6 +43,7 @@ class creationTest(unittest.TestCase):
         #she creates a new reference
 
         #she adds name, title, their position, their compamny and a phone number/ email/ other contact
+        
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
