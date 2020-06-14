@@ -10,7 +10,7 @@ class creationTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_can_add_info(self):
+    def test_can_add_info_not_logged_in(self):
         #stacey wants to make an online cv cos she needs a job (broke af)
         #she goes to a website to start creating
         self.browser.get('http://127.0.0.1:8000/cv')
@@ -18,11 +18,34 @@ class creationTest(unittest.TestCase):
         #she sees and clicks on a new cv button
         new_cv = self.browser.find_element_by_class_name('new_cv_button').text
         self.assertIn('new', new_cv)
+        new_cv_button = self.browser.find_element_by_class_name('new_cv_button')
+        new_cv_button.click()
+        time.sleep(1)
+
+       
+
+
 
 
         #she logs in so she knows its her cv shes making
+        self.assertIn('Login',self.browser.title)
+        username = self.browser.find_element_by_name('username')
+        password = self.browser.find_element_by_name('password')
 
-        #she sees a box and enters her personal details,address, email, phone number
+        username.send_keys('horatioPistachio')
+        password.send_keys('boysarebackintown') #this is just for test, better luck next time
+        password.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        #she sees a box and enters her personal details,address, name ,phone number
+        #email should already be there from login
+        self.assertIn('New Cv', self.browser.title)
+
+        address = self.browser.find_element('address')
+        name = self.browser.find_element('name')
+        phone_number = self.browser.find_element('phone_number')
+        email = self.browser.find_element('email')
+
 
         #she sees an objectives box and enters her goal
 
@@ -45,7 +68,8 @@ class creationTest(unittest.TestCase):
         #she creates a new reference
 
         #she adds name, title, their position, their compamny and a phone number/ email/ other contact
-        
+
+    
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')

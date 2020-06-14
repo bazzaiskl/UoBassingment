@@ -2,9 +2,16 @@
 
 {% block content %}
 <div class= 'cv_page'>
-    <div class= 'new_cv_button'>
+    <button class= 'new_cv_button' 
+    {% if user.is_authenticated %}
+        onclick="document.location= 'newCV'" 
+    {% else %}
+        onclick="document.location= 'accounts/login?next=newCV'"
+    {% endif %}
+    
+    >
         <h3>new</h3>
-    </div>
+    </button>
 
 </div>
 

@@ -16,3 +16,4 @@ class HomePageTest(TestCase):
         self.assertTrue(html.startswith('\n<html>\n'))
         self.assertIn('<title>My Blog</title>',html)
         self.assertTrue(html.endswith('</html>'))
+
