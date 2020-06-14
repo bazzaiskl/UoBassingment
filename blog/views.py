@@ -41,3 +41,6 @@ def post_edit(request, pk):
 
 def cv(request):
     return render(request,'blog/cv.html')
+
+def new_cv(request):
+    return render(request,'blog/new_cv.html')

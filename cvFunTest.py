@@ -39,7 +39,7 @@ class creationTest(unittest.TestCase):
 
         #she sees a box and enters her personal details,address, name ,phone number
         #email should already be there from login
-        self.assertIn('New Cv', self.browser.title)
+        self.assertIn('New CV', self.browser.find_element_by_tag_name('h2').text)
 
         address = self.browser.find_element('address')
         name = self.browser.find_element('name')
