@@ -51,7 +51,8 @@ def new_cv(request):
             return redirect('new_cv_experience.html')
         else:
             print('invalid cv')
-
+            print(cv.errors.as_data())
+            
     return render(request, 'blog/new_cv.html', {'form': cv})
 
 def new_cv_experience(request):

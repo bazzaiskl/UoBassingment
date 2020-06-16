@@ -35,7 +35,6 @@ class CV(models.Model):
     
 
     def publish(self):
-        self.published_date = timezone.now()
         self.save()
 
     def __str__(self):
