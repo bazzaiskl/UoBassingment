@@ -60,3 +60,4 @@ def new_cv(request):
 def new_cv_experience(request):
     cv = CvForm.experience()
     return render(request, 'blog/new_cv_experience.html', {'form':cv})
+
