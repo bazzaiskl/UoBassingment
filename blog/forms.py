@@ -13,3 +13,7 @@ class CvForm(forms.ModelForm):
         class Meta:
             model = CV
             fields = ('name','address', 'phone_number', 'email', 'objective', 'skills', 'interests')
+    class experience(forms.ModelForm):
+        class Meta:
+            model = CV
+            fields = ('job_title',)

@@ -8,8 +8,12 @@ class creationTest(unittest.TestCase):
         self.browser = webdriver.Firefox()
 
     def tearDown(self):
-        self.browser.quit()
-        #print("no close")
+        #this try/excpets checks for the error page and doesnt close it if its there
+        try:
+            errorPage = self.browser.find_element_by_id('summary')
+            print("no close")
+        except:
+            self.browser.quit()
 
     def test_can_add_info_not_logged_in(self):
         #stacey wants to make an online cv cos she needs a job (broke af)
@@ -44,13 +48,13 @@ class creationTest(unittest.TestCase):
         self.assertIn('New CV', self.browser.find_element_by_tag_name('h2').text)
 
         name = self.browser.find_element_by_name('name')
-        address = self.browser.find_element_by_name('address')      
+        address = self.browser.find_element_by_name('address')   #probs should improve for subburb, street thingo   
         phone_number = self.browser.find_element_by_name('phone_number')
         email = self.browser.find_element_by_name('email')
 
 
         #she sees an objectives box and enters her goal
-        objectve = self.browser.find_element_by_name('objective')
+        objective = self.browser.find_element_by_name('objective')
 
         #she adds a list of skills and personal qualities
         skills = self.browser.find_element_by_name('skills') #-- update to a list style, rather that text field-- maybe hit enter between things
@@ -59,7 +63,25 @@ class creationTest(unittest.TestCase):
         #she adds a list of interests
         interests = self.browser.find_element_by_name('interests')
 
+
+        #she fills out the form
+        name.send_keys("stacey shortcakes")
+        address.send_keys("23 bakers avenue, cakelton")
+        phone_number.send_keys("0385934811")
+        email.send_keys("longcakes@gmail.com")
+        objective.send_keys("I would like to become the best baker I can be. I hope you can teach me the art")
+        skills.send_keys("baking\neating\nthe double wisk technique\nallround good las")
+        interests.send_keys("baking\neggs\nfootball\nshoe making")
+
+       
+        #she clicks on submit personal details
+        submitPersonalDetail = self.browser.find_element_by_tag_name('button')
+        submitPersonalDetail.click()
+        time.sleep(1)
+
 #-- new page --#
+        # she sees shes at the experience part
+        self.assertIn('Experience',self.browser.find_element_by_tag_name('h3'))
         #she creates a new experience section
         experience = self.browser.find_element_by_name('add_experience')
         experience.click()

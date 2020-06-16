@@ -43,5 +43,17 @@ def cv(request):
     return render(request,'blog/cv.html')
 
 def new_cv(request):
-    cv = CvForm.personalDetails()
+    cv = CvForm.personalDetails()   
+    if request.method == "POST":          
+        if cv.is_valid():
+            post = cv.save(commit = False)
+            post.save()
+            return redirect('new_cv_experience.html')
+        else:
+            print('invalid cv')
+
     return render(request, 'blog/new_cv.html', {'form': cv})
+
+def new_cv_experience(request):
+    cv = CvForm.experience()
+    return render(request, 'blog/new_cv_experience.html', {'form':cv})
