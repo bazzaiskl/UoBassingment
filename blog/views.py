@@ -42,9 +42,9 @@ def post_edit(request, pk):
 def cv(request):
     return render(request,'blog/cv.html')
 
-def new_cv(request):
-    cv = CvForm.personalDetails()   
-    if request.method == "POST":          
+def new_cv(request):      
+    if request.method == "POST":
+        cv = CvForm(request.POST)           
         if cv.is_valid():
             post = cv.save(commit = False)
             post.save()
@@ -52,6 +52,8 @@ def new_cv(request):
         else:
             print('invalid cv')
             print(cv.errors.as_data())
+    else:
+        cv = CvForm()
             
     return render(request, 'blog/new_cv.html', {'form': cv})
 
