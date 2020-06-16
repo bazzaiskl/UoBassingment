@@ -52,10 +52,14 @@ def new_cv(request):
             return redirect('new_cv_experience.html')
         else:
             print('invalid cv')
+<<<<<<< HEAD
             print(cv.errors.as_data())
     else:
         cv = CvForm()
             
+=======
+
+>>>>>>> parent of 75c49f3... gonna try removin class inheritance in forms.py
     return render(request, 'blog/new_cv.html', {'form': cv})
 
 def new_cv_experience(request):
