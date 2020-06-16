@@ -42,7 +42,6 @@ def post_edit(request, pk):
 def cv(request):
     return render(request,'blog/cv.html')
 
-<<<<<<< HEAD
 def new_cv(request):      
     if request.method == "POST":
         cv = CvForm(request.POST)           
@@ -52,21 +51,12 @@ def new_cv(request):
             return redirect('new_cv_experience.html')
         else:
             print('invalid cv')
-<<<<<<< HEAD
             print(cv.errors.as_data())
     else:
         cv = CvForm()
             
-=======
-
->>>>>>> parent of 75c49f3... gonna try removin class inheritance in forms.py
     return render(request, 'blog/new_cv.html', {'form': cv})
 
 def new_cv_experience(request):
     cv = CvForm.experience()
     return render(request, 'blog/new_cv_experience.html', {'form':cv})
-=======
-def new_cv(request):
-    cv = CvForm.personalDetails()
-    return render(request, 'blog/new_cv.html', {'form': cv})
->>>>>>> parent of 4697e5c... error where form is invalid
