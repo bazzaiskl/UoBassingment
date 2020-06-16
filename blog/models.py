@@ -21,13 +21,16 @@ class CV(models.Model):
     #personal deeeeets
     name = models.CharField(max_length = 100)
     address = models.CharField(max_length = 500)
-    phone_number= models.PositiveIntegerField(max_length= 20)
+    phone_number= models.CharField(max_length= 20)
     email = models.CharField(max_length = 100)
 
     #professional deets
     objective = models.TextField()
     skills = models.TextField()
     interests  = models.TextField()
+
+    #expereince
+    job_title = models.CharField(max_length= 100)
 
     
 

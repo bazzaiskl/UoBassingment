@@ -2,12 +2,8 @@
 
 {% block content %}
 <h2>New CV</h2>
-<<<<<<< HEAD
 <h3>Personal Details</h3>
-<form method="POST" class="post-form" action=""> 
-=======
 <form method="POST" class="post-form"> 
->>>>>>> parent of 75c49f3... gonna try removin class inheritance in forms.py
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit"> Save </button>

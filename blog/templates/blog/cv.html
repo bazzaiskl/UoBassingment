@@ -4,7 +4,7 @@
 <div class= 'cv_page'>
     <button class= 'new_cv_button' 
     {% if user.is_authenticated %}
-        onclick="document.location= 'newCV'" 
+        onclick="document.location= 'new_cv'" 
     {% else %}
         onclick="document.location= 'accounts/login?next=/new_cv'"
     {% endif %}

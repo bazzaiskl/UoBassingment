@@ -44,7 +44,7 @@ def cv(request):
 
 def new_cv(request):      
     if request.method == "POST":
-        cv = CvForm(request.POST)           
+        cv = CvForm.personalDetails(request.POST)           
         if cv.is_valid():
             post = cv.save(commit = False)
             post.save()
@@ -53,7 +53,7 @@ def new_cv(request):
             print('invalid cv')
             print(cv.errors.as_data())
     else:
-        cv = CvForm()
+        cv = CvForm.personalDetails()
             
     return render(request, 'blog/new_cv.html', {'form': cv})
 
