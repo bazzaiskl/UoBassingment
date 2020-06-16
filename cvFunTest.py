@@ -9,6 +9,7 @@ class creationTest(unittest.TestCase):
 
     def tearDown(self):
         self.browser.quit()
+        #print("no close")
 
     def test_can_add_info_not_logged_in(self):
         #stacey wants to make an online cv cos she needs a job (broke af)
@@ -35,16 +36,16 @@ class creationTest(unittest.TestCase):
         username.send_keys('horatioPistachio')
         password.send_keys('boysarebackintown') #this is just for test, better luck next time
         password.send_keys(Keys.ENTER)
-        time.sleep(1)
+        time.sleep(2)
 
         #she sees a box and enters her personal details,address, name ,phone number
         #email should already be there from login
         self.assertIn('New CV', self.browser.find_element_by_tag_name('h2').text)
 
-        address = self.browser.find_element('address')
-        name = self.browser.find_element('name')
-        phone_number = self.browser.find_element('phone_number')
-        email = self.browser.find_element('email')
+        name = self.browser.find_element_by_name('name')
+        address = self.browser.find_element_by_name('address')      
+        phone_number = self.browser.find_element_by_name('phone_number')
+        email = self.browser.find_element_by_name('email')
 
 
         #she sees an objectives box and enters her goal

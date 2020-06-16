@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post
+from .models import Post, CV
 from django.utils import timezone
-from .forms import PostForm
+from .forms import PostForm, CvForm
 
 # Create your views here.
 def post_list(request):
@@ -43,4 +43,5 @@ def cv(request):
     return render(request,'blog/cv.html')
 
 def new_cv(request):
-    return render(request,'blog/new_cv.html')
+    cv = CvForm()
+    return render(request, 'blog/new_cv.html', {'form': cv})
