@@ -20,7 +20,8 @@ class Post(models.Model):
 class CV(models.Model):
     name = models.CharField(max_length = 100)
     address = models.CharField(max_length = 500)
-    #phone_number= models.PositiveIntegerField(max_length= 20)
+    phone_number= models.PositiveIntegerField(max_length= 20)
+    email = models.CharField(max_length = 100)
 
     def publish(self):
         self.published_date = timezone.now()
