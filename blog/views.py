@@ -43,5 +43,5 @@ def cv(request):
     return render(request,'blog/cv.html')
 
 def new_cv(request):
-    cv = CvForm()
+    cv = CvForm.personalDetails()
     return render(request, 'blog/new_cv.html', {'form': cv})
