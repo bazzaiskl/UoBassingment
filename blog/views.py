@@ -48,7 +48,7 @@ def new_cv(request):
         if cv.is_valid():
             post = cv.save(commit = False)
             post.save()
-            return redirect('new_cv_experience.html')
+            return redirect('new_cv_experience')
         else:
             print('invalid cv')
             print(cv.errors.as_data())
@@ -59,5 +59,5 @@ def new_cv(request):
 
 def new_cv_experience(request):
     cv = CvForm.experience()
-    return render(request, 'blog/new_cv_experience.html', {'form':cv})
+    return render(request, 'blog/new_cv_experience.html', {'form': cv})
 
