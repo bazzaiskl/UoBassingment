@@ -42,6 +42,7 @@ def post_edit(request, pk):
 def cv(request):
     return render(request,'blog/cv.html')
 
+<<<<<<< HEAD
 def new_cv(request):      
     if request.method == "POST":
         cv = CvForm(request.POST)           
@@ -60,3 +61,8 @@ def new_cv(request):
 def new_cv_experience(request):
     cv = CvForm.experience()
     return render(request, 'blog/new_cv_experience.html', {'form':cv})
+=======
+def new_cv(request):
+    cv = CvForm.personalDetails()
+    return render(request, 'blog/new_cv.html', {'form': cv})
+>>>>>>> parent of 4697e5c... error where form is invalid
