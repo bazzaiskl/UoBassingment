@@ -6,6 +6,7 @@
 <form method="POST" class="post-form"> 
     {% csrf_token %}
     {{form_personal_details.as_p}}
+    <h3 id ='experience'>Experience</h3>
     {{form_experience.as_p}}
     <button type="submit"> Save </button>
 </form>

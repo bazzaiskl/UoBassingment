@@ -75,20 +75,28 @@ class creationTest(unittest.TestCase):
 
        
         #she clicks on submit personal details
-        submitPersonalDetail = self.browser.find_element_by_tag_name('button')
-        submitPersonalDetail.click()
-        time.sleep(1)
-
+        
 #-- new page --#
         # she sees shes at the experience part
-        self.assertIn('Experience', self.browser.find_element_by_tag_name('h3').text)
+        self.assertIn('Experience', self.browser.find_element_by_id('experience').text)
 
         #it asks and she gives a job title, company, years active and a decription of responabilites
         job_title = self.browser.find_element_by_name('job_title')
-        company = self.browser.find_elements_by_name('company')
+        company = self.browser.find_element_by_name('company')
         start_year = self.browser.find_element_by_name('start_year')
         end_year = self.browser.find_element_by_name('end_year')
         job_description = self.browser.find_element_by_name('job_description')
+
+        job_title.send_keys('pie eater')
+        company.send_keys('pie co')
+        start_year.send_keys('1/1/2020')
+        end_year.send_keys('2/1/2020')
+        job_description.send_keys('i didnt do alot')
+
+        submitPersonalDetail = self.browser.find_element_by_tag_name('button')
+        submitPersonalDetail.click()
+        time.sleep(3)
+
 
         #she has the option to add another experience
 
