@@ -45,21 +45,35 @@ def cv(request):
 def new_cv(request):      
     if request.method == "POST":
         cv_personal_details = CvForm.personalDetails(request.POST)
-        cv_experience = CvForm.experience(request.POST)           
-        if cv_personal_details.is_valid() & cv_experience.is_valid():
+        cv_experience = CvForm.experience(request.POST)
+        cv_education = CvForm.education(request.POST)
+        cv_other = CvForm.other(request.POST)
+        cv_references = CvForm.references()
+        full_form = [cv_personal_details, cv_experience, cv_education, cv_other,cv_references]           
+        if cv_personal_details.is_valid() & cv_experience.is_valid() &cv_education.is_valid() & cv_other.is_valid() & cv_references.is_valid():
             post_personal = cv_personal_details.save(commit = False)
             post_experience = cv_experience.save(commit=False)
+            post_education = cv_education.save(commit=False)
+            post_other = cv_other.save(commit=False)
+            post_references = cv_references(commit=False)
+
             post_personal.save()
             post_experience.save()
-            return render(request, 'blog/new_cv.html',{'form_personal_details': cv_personal_details, 'form_experience':cv_experience})
+            post_education.save()
+            post_other.save()
+            post_references.save()
+            return redirect('cv')
         else:
             print('invalid cv')
             print(cv_personal_details.errors.as_data())
     else:
         cv_personal_details = CvForm.personalDetails()
         cv_experience = CvForm.experience()
+        cv_education = CvForm.education()
+        cv_other = CvForm.other()
+        cv_references = CvForm.references()
             
-    return render(request, 'blog/new_cv.html', {'form_personal_details': cv_personal_details, 'form_experience':cv_experience})
+    return render(request, 'blog/new_cv.html', {'form_personal_details': cv_personal_details, 'form_experience':cv_experience, 'form_education':cv_education, 'form_other':cv_other, 'form_references':cv_references})
 
 def new_cv_experience(request):
     cv = CvForm.experience()

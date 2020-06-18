@@ -28,6 +28,8 @@ class CV(models.Model):
     objective = models.TextField()
     skills = models.TextField()
     interests  = models.TextField()
+    awards = models.TextField()
+    involvement = models.TextField()
 
     #expereince
     class experience(models.Model):
@@ -36,6 +38,19 @@ class CV(models.Model):
         start_year = models.DateField()
         end_year = models.DateField()
         job_description = models.TextField()
+
+    class education(models.Model):
+        program = models.CharField(max_length= 200)
+        insitution = models.CharField(max_length= 100)
+        start_year_ed = models.DateField()
+        end_year_ed = models.DateField()
+        education_description = models.TextField()
+
+    class references(models.Model):
+        ref_name = models.CharField(max_length=100)
+        ref_position = models.CharField(max_length=100)
+        ref_company = models.CharField(max_length=100)
+        ref_contact = models.CharField(max_length=100)
 
     
 

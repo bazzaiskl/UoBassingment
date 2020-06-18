@@ -93,9 +93,6 @@ class creationTest(unittest.TestCase):
         end_year.send_keys('2/1/2020')
         job_description.send_keys('i didnt do alot')
 
-        submitPersonalDetail = self.browser.find_element_by_tag_name('button')
-        submitPersonalDetail.click()
-        time.sleep(3)
 
 
         #she has the option to add another experience
@@ -106,21 +103,48 @@ class creationTest(unittest.TestCase):
         
 #-- new page --#
         #she creates a new education 
-
+        self.assertIn('Education', self.browser.find_element_by_id('education').text)
         #it asks and she adds name of program, inisition of programme, adds years active and a description
+        program = self.browser.find_element_by_name('program')
+        insitution = self.browser.find_element_by_name('insitution')
+        start_year_ed = self.browser.find_element_by_name('start_year_ed')
+        end_year_ed = self.browser.find_element_by_name('end_year_ed')
+        education_description = self.browser.find_element_by_name('education_description')
+
+        program.send_keys('masters of cake making')
+        insitution.send_keys('grandmas house')
+        start_year_ed.send_keys('1/1/2019')
+        end_year_ed.send_keys('1/1/2020')
+        education_description.send_keys('they let us bake a cake AND eat it too')
 
         #she sees a box to add a list of her school and university involvement
+        involvement  = self.browser.find_element_by_name('involvement')
+        involvement.send_keys('granny house comp 2020\neating comp\nwake and bake club')
 
         #she sees a box to add a list of awards
+        awards = self.browser.find_element_by_name('awards')
+        awards.send_keys('grannys house comp 2020 3rd place\nbest mud cake\ncoolest flambe')
+        
+        
 
 #-- new page --#
         #she creates a new reference
-
+        ref_name = self.browser.find_element_by_name('ref_name')
+        ref_position = self.browser.find_element_by_name('ref_position')
+        ref_company = self.browser.find_element_by_name('ref_company')
+        ref_contact = self.browser.find_element_by_name('ref_contact')
         #she adds name, title, their position, their compamny and a phone number/ email/ other contact
-
+        ref_name.send_keys('granny')
+        ref_position.send_keys('chief')
+        ref_company.send_keys('granny wake n bake')
+        ref_contact.send_keys('oldNan@wake2Bake.com')
         #she submits the cv
-
+        
+        submitPersonalDetail = self.browser.find_element_by_tag_name('button')
+        submitPersonalDetail.click()
+        time.sleep(3)
         #she is able to see a nicely formated cv
+        
 
     
 
