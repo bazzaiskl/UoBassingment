@@ -44,18 +44,19 @@ def cv(request):
 
 def new_cv(request):      
     if request.method == "POST":
-        cv = CvForm.personalDetails(request.POST)           
-        if cv.is_valid():
-            post = cv.save(commit = False)
+        cv_personal_details = CvForm.personalDetails(request.POST)           
+        if cv_personal_details.is_valid():
+            post = cv_personal_details.save(commit = False)
             post.save()
             return redirect('new_cv_experience')
         else:
             print('invalid cv')
-            print(cv.errors.as_data())
+            print(cv_personal_details.errors.as_data())
     else:
-        cv = CvForm.personalDetails()
+        cv_personal_details = CvForm.personalDetails()
+        cv_experience = CvForm.experience()
             
-    return render(request, 'blog/new_cv.html', {'form': cv})
+    return render(request, 'blog/new_cv.html', {'form_personal_details': cv_personal_details, 'form_experience':cv_experience})
 
 def new_cv_experience(request):
     cv = CvForm.experience()

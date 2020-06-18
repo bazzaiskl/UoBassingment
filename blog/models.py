@@ -30,7 +30,12 @@ class CV(models.Model):
     interests  = models.TextField()
 
     #expereince
-    job_title = models.CharField(max_length= 100)
+    class experience(models.Model):
+        job_title = models.CharField(max_length= 100)
+        company = models.CharField(max_length= 100)
+        start_year = models.DateField()
+        end_year = models.DateField()
+        job_description = models.TextField()
 
     
 

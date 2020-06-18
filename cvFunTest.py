@@ -81,16 +81,20 @@ class creationTest(unittest.TestCase):
 
 #-- new page --#
         # she sees shes at the experience part
-        self.assertIn('Experience',self.browser.find_element_by_tag_name('h3'))
-        #she creates a new experience section
-        experience = self.browser.find_element_by_name('add_experience')
-        experience.click()
+        self.assertIn('Experience', self.browser.find_element_by_tag_name('h3').text)
+
         #it asks and she gives a job title, company, years active and a decription of responabilites
         job_title = self.browser.find_element_by_name('job_title')
         company = self.browser.find_elements_by_name('company')
         start_year = self.browser.find_element_by_name('start_year')
         end_year = self.browser.find_element_by_name('end_year')
         job_description = self.browser.find_element_by_name('job_description')
+
+        #she has the option to add another experience
+
+        #she clicks add another
+
+        #its askes for stuff and she fills it out
         
 #-- new page --#
         #she creates a new education 

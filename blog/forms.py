@@ -16,5 +16,5 @@ class CvForm(forms.ModelForm):
 
     class experience(forms.ModelForm):
         class Meta:
-            model = CV
-            fields = ('job_title',)
+            model = CV.experience
+            fields = ('job_title','company')
