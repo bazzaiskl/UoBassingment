@@ -9,6 +9,8 @@ class PostForm(forms.ModelForm):
         fields = ('title','text',)
     
 class CvForm(forms.ModelForm):
+    class Meta:
+        pass
     class personalDetails(forms.ModelForm):
         class Meta:
             model = CV
@@ -30,3 +32,4 @@ class CvForm(forms.ModelForm):
         class Meta:
             model = CV.references
             fields = ('ref_name', 'ref_position','ref_company','ref_contact')
+    

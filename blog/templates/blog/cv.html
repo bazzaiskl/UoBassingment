@@ -14,5 +14,13 @@
     </button>
 
 </div>
+{% for cv in cv_view %}
+<div id='cv'>
+    
+    <h3><a href="{% url 'cv_detail' pk=cv.pk %}">{{cv.name}}</a></h3>
+
+</div>
+
+{% endfor %}
 
 {% endblock %}

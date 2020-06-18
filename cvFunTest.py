@@ -139,11 +139,13 @@ class creationTest(unittest.TestCase):
         ref_company.send_keys('granny wake n bake')
         ref_contact.send_keys('oldNan@wake2Bake.com')
         #she submits the cv
-        
+
         submitPersonalDetail = self.browser.find_element_by_tag_name('button')
         submitPersonalDetail.click()
         time.sleep(3)
-        #she is able to see a nicely formated cv
+        #she is able to see a nicely formated cv in cv homepage
+        self.assertIn(name, self.browser.find_element_by_tag('h2').text)
+
         
 
     

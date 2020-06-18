@@ -40,7 +40,8 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 def cv(request):
-    return render(request,'blog/cv.html')
+    cv_view = CV.objects.order_by('name')
+    return render(request,'blog/cv.html',{'cv_view':cv_view})
 
 def new_cv(request):      
     if request.method == "POST":
@@ -51,18 +52,20 @@ def new_cv(request):
         cv_references = CvForm.references()
         full_form = [cv_personal_details, cv_experience, cv_education, cv_other,cv_references]           
         if cv_personal_details.is_valid() & cv_experience.is_valid() &cv_education.is_valid() & cv_other.is_valid() & cv_references.is_valid():
+            
             post_personal = cv_personal_details.save(commit = False)
             post_experience = cv_experience.save(commit=False)
             post_education = cv_education.save(commit=False)
             post_other = cv_other.save(commit=False)
             post_references = cv_references(commit=False)
 
+            
             post_personal.save()
             post_experience.save()
             post_education.save()
             post_other.save()
             post_references.save()
-            return redirect('cv')
+            return redirect('cv_detail',pk = cv_personal_details.pk)
         else:
             print('invalid cv')
             print(cv_personal_details.errors.as_data())
@@ -79,3 +82,6 @@ def new_cv_experience(request):
     cv = CvForm.experience()
     return render(request, 'blog/new_cv_experience.html', {'form': cv})
 
+def cv_detail(request, pk):
+    cv = get_object_or_404(CV, pk=pk)
+    return render(request, 'blog/cv_detail.html',{'cv': cv})

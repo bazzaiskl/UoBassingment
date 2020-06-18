@@ -9,4 +9,5 @@ urlpatterns = [
     path('cv', views.cv, name="cv"),
     path('new_cv', views.new_cv, name="new_cv"),
     path('new_cv_experience', views.new_cv_experience, name="new_cv_experience"),
+    path('cv/<int:pk>/', views.cv_detail, name='cv_detail'),
 ]
