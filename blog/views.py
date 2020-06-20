@@ -88,7 +88,7 @@ def new_cv_experience(request):
 
 def cv_detail(request, pk):
     cv = get_object_or_404(CV, pk=pk)
-    cv.experience = get_object_or_404(CV.experience, pk=pk)
+    cv.experience = get_object_or_404(CV.experience_list[0], pk=pk)
     cv.education = get_object_or_404(CV.education, pk=pk)
     cv_references = get_object_or_404(CV.references, pk=pk)
     return render(request, 'blog/cv_detail.html',{'cv': cv,'cv.experience':cv.experience,'cv.education':cv.education,'cv.references':cv_references})

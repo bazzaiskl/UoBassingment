@@ -22,7 +22,7 @@ class CV(models.Model):
     name = models.CharField(max_length = 100)
     address = models.CharField(max_length = 500)
     phone_number= models.CharField(max_length= 20)
-    email = models.CharField(max_length = 100)
+    email = models.EmailField() #change not tested
 
     #professional deets
     objective = models.TextField()
@@ -30,6 +30,11 @@ class CV(models.Model):
     interests  = models.TextField()
     awards = models.TextField()
     involvement = models.TextField()
+
+    #class holders
+    experience_list =[]
+    education_list =[]
+    reference_list =[]
 
     #expereince
     class experience(models.Model):
@@ -53,8 +58,12 @@ class CV(models.Model):
         ref_contact = models.CharField(max_length=100)
 
     
+    def new_experience(self):
+        CV.experience_list.append(CV.experience)
+        return CV.experience_list[0]
 
     def publish(self):
+        self.published_date = timezone.now()
         self.save()
 
     def __str__(self):
