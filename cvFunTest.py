@@ -13,7 +13,8 @@ class creationTest(unittest.TestCase):
             errorPage = self.browser.find_element_by_id('summary')
             print("no close")
         except:
-            self.browser.quit()
+            #self.browser.quit()
+            pass
 
     def test_can_add_info_not_logged_in(self):
         #stacey wants to make an online cv cos she needs a job (broke af)

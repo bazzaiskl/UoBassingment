@@ -10,12 +10,12 @@ class PostForm(forms.ModelForm):
     
 class CvForm(forms.ModelForm):
     class Meta:
-        pass
+        model = CV
+        fields = ()
     class personalDetails(forms.ModelForm):
         class Meta:
             model = CV
             fields = ('name','address', 'phone_number', 'email', 'objective', 'skills', 'interests')
-
     class experience(forms.ModelForm):
         class Meta:
             model = CV.experience

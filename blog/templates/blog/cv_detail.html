@@ -1,10 +1,50 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<div class="detail_cv">
-<h3>{{cv.name}}</h3>
+<h2>{{cv.name}}</h2>
+<div class="personal_details">
+    <li>{{cv.address}}</li>
+    <li>{{cv.phone_number}}</li>
+    <li>{{cv.email}}</li>
+</div>
+<div class="professional_details">
+    <h3>objective</h3>
+    <p>{{cv.objective}}</p>
+    <h3>skills</h3>
+    <p>{{cv.skills}}</p>
+    <h3>interests</h3>
+    <p>{{cv.interests}}</p>
+</div>
 
+<div class="experience">
+    <h3>Experience</h3>
+    <h4>{{cv.experience.job_title}}</h4>
+    <p>{{cv.experience.company}}</p>
+    <p>{{cv.experience.start_year}} - {{cv.experience.end_year}}</p>
+    <p>{{cv.experience.job_description}}</p>
+</div>
 
+<div class="education">
+    <h3>education</h3>
+    <h4>{{cv.education.program}}</h4>
+    <p>{{cv.education.insitution}}</p>
+    <p>{{cv.education.start_year_ed}} - {{cv.education.end_year_ed}}</p>
+    <p>{{cv.education.education_description}}</p>
+</div>
+
+<div class="lists">
+    <h3>awards</h3>
+    <p>{{cv.awards}}</p>
+    <h3>involvement</h3>
+    <p>{{cv.involvement}}</p>
+</div>
+
+<div class="references">
+    <h3>references</h3>
+    <h4>{{cv.references.ref_name}}</h4>
+    <p>{{cv.references.ref_position}}</p>
+    <p>{{cv.references.ref_company}}</p>
+    <p>{{cv.references.ref_contact}}</p>
 </div>
 
 
