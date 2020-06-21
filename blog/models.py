@@ -19,6 +19,7 @@ class Post(models.Model):
 
 class CV(models.Model):
     #personal deeeeets
+    username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=0)
     name = models.CharField(max_length = 100)
     address = models.CharField(max_length = 500)
     phone_number= models.CharField(max_length= 20)

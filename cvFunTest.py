@@ -13,8 +13,13 @@ class creationTest(unittest.TestCase):
             errorPage = self.browser.find_element_by_id('summary')
             print("no close")
         except:
-            #self.browser.quit()
+            self.browser.quit()
             pass
+
+
+	def test_edit_post(self):
+		pass
+
 
     def test_can_add_info_not_logged_in(self):
         #stacey wants to make an online cv cos she needs a job (broke af)
@@ -66,7 +71,7 @@ class creationTest(unittest.TestCase):
 
 
         #she fills out the form
-        name.send_keys("stacey shortcakes")
+        name.send_keys("Stacey Shortcakes")
         address.send_keys("23 bakers avenue, cakelton")
         phone_number.send_keys("0385934811")
         email.send_keys("longcakes@gmail.com")
@@ -145,7 +150,7 @@ class creationTest(unittest.TestCase):
         submitPersonalDetail.click()
         time.sleep(3)
         #she is able to see a nicely formated cv in cv homepage
-        self.assertIn(name, self.browser.find_element_by_tag('h2').text)
+        self.assertIn('Stacey Shortcakes', self.browser.find_element_by_tag_name('h2').text)
 
         
 

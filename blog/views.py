@@ -47,7 +47,8 @@ def new_cv(request):
     if request.method == "POST":
         cv = CvForm(request.POST)       
         if cv.is_valid():            
-            post_cv = cv.save(commit=False)          
+            post_cv = cv.save(commit=False)
+            post_cv.username = request.user          
             post_cv.save()            
             return redirect('cv_detail',pk = post_cv.pk )
         else:
@@ -57,6 +58,8 @@ def new_cv(request):
         cv = CvForm()          
     return render(request, 'blog/new_cv.html', {'form_cv':cv})
 
+def edit_cv(request):
+    pass
 
 def cv_detail(request, pk):
     cv = get_object_or_404(CV, pk=pk)
