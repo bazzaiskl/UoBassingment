@@ -31,36 +31,25 @@ class CV(models.Model):
     awards = models.TextField()
     involvement = models.TextField()
 
-    #class holders
-    experience_list =[]
-    education_list =[]
-    reference_list =[]
-
     #expereince
-    class experience(models.Model):
-        job_title = models.CharField(max_length= 100)
-        company = models.CharField(max_length= 100)
-        start_year = models.DateField()
-        end_year = models.DateField()
-        job_description = models.TextField()
+    job_title = models.CharField(max_length= 100)
+    company = models.CharField(max_length= 100)
+    start_year = models.DateField(blank=True, null=True)
+    end_year = models.DateField(blank=True, null=True)
+    job_description = models.TextField()
 
-    class education(models.Model):
-        program = models.CharField(max_length= 200)
-        insitution = models.CharField(max_length= 100)
-        start_year_ed = models.DateField()
-        end_year_ed = models.DateField()
-        education_description = models.TextField()
-
-    class references(models.Model):
-        ref_name = models.CharField(max_length=100)
-        ref_position = models.CharField(max_length=100)
-        ref_company = models.CharField(max_length=100)
-        ref_contact = models.CharField(max_length=100)
+   
+    program = models.CharField(max_length= 200)
+    insitution = models.CharField(max_length= 100)
+    start_year_ed = models.DateField(blank=True, null=True)
+    end_year_ed = models.DateField(blank=True, null=True)
+    education_description = models.TextField()
 
     
-    def new_experience(self):
-        CV.experience_list.append(CV.experience)
-        return CV.experience_list[0]
+    ref_name = models.CharField(max_length=100)
+    ref_position = models.CharField(max_length=100)
+    ref_company = models.CharField(max_length=100)
+    ref_contact = models.CharField(max_length=100)
 
     def publish(self):
         self.published_date = timezone.now()

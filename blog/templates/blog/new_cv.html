@@ -6,15 +6,7 @@
 <form method="POST" class="post-form"> 
     {% csrf_token %}
     <h3 id='personal_details'>Personal Details</h3>
-    {{form_personal_details.as_p}}
-    <h3 id ='experience'>Experience</h3>
-    {{form_experience.as_p}}
-    <h3 id = 'education'>Education</h3>
-    {{form_education.as_p}}
-    <h3 id = 'involvement'>Other</h3>
-    {{form_other.as_p}}
-    <h3 id = 'references'>References</h3>
-    {{form_references.as_p}}
+    {{form_cv.as_p}}
     <button type="submit"> Save </button>
 </form>
 

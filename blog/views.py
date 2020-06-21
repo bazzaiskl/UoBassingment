@@ -45,50 +45,19 @@ def cv(request):
 
 def new_cv(request):      
     if request.method == "POST":
-        cv_base = CvForm(request.POST)
-        cv_personal_details = CvForm.personalDetails(request.POST)
-        cv_experience = CvForm.experience(request.POST)
-        cv_education = CvForm.education(request.POST)
-        cv_other = CvForm.other(request.POST)
-        cv_references = CvForm.references(request.POST)
-
-        #full_form = [cv_personal_details, cv_experience, cv_education, cv_other,cv_references]           
-        if cv_base.is_valid() & cv_personal_details.is_valid() & cv_experience.is_valid() &cv_education.is_valid() & cv_other.is_valid() & cv_references.is_valid():
-            
-            post_base = cv_base.save(commit=False)
-            post_personal = cv_personal_details.save(commit = False)
-            post_experience = cv_experience.save(commit=False)
-            post_education = cv_education.save(commit=False)
-            post_other = cv_other.save(commit=False)
-            post_references = cv_references.save(commit=False)
-          
-            post_base.save()
-            post_personal.save()
-            post_experience.save()
-            post_education.save()
-            post_other.save()
-            post_references.save()
-            return redirect('cv_detail',pk = post_base.pk )
+        cv = CvForm(request.POST)       
+        if cv.is_valid():            
+            post_cv = cv.save(commit=False)          
+            post_cv.save()            
+            return redirect('cv_detail',pk = post_cv.pk )
         else:
             print('invalid cv')
-            print(cv_personal_details.errors.as_data())
+            print(cv.errors.as_data())
     else:
-        cv_base = CvForm()
-        cv_personal_details = CvForm.personalDetails()
-        cv_experience = CvForm.experience()
-        cv_education = CvForm.education()
-        cv_other = CvForm.other()
-        cv_references = CvForm.references()
-            
-    return render(request, 'blog/new_cv.html', {'form_base':cv_base,'form_personal_details': cv_personal_details, 'form_experience':cv_experience, 'form_education':cv_education, 'form_other':cv_other, 'form_references':cv_references})
+        cv = CvForm()          
+    return render(request, 'blog/new_cv.html', {'form_cv':cv})
 
-def new_cv_experience(request):
-    cv = CvForm.experience()
-    return render(request, 'blog/new_cv_experience.html', {'form': cv})
 
 def cv_detail(request, pk):
     cv = get_object_or_404(CV, pk=pk)
-    cv.experience = get_object_or_404(CV.experience_list[0], pk=pk)
-    cv.education = get_object_or_404(CV.education, pk=pk)
-    cv_references = get_object_or_404(CV.references, pk=pk)
-    return render(request, 'blog/cv_detail.html',{'cv': cv,'cv.experience':cv.experience,'cv.education':cv.education,'cv.references':cv_references})
+    return render(request, 'blog/cv_detail.html',{'cv': cv})
