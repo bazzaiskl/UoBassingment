@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h2>edit {{cv.name}} CV</h2>
+
+<form method="POST" class='post_form'> {% csrf_token %}
+    {{form_cv.as_p}}
+    <button type="submit" class="save btn btn-default" id="submit_button">Save</button>
+
+</form>
+
+{% endblock %}

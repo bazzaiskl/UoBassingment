@@ -2,6 +2,9 @@
 
 {% block content %}
 <h2>{{cv.name}}</h2>
+{% if request.user == cv.username %}      
+        <a class="btn btn-default" href="{% url 'cv_edit' pk=cv.pk %}" id='cv_edit'><span class="glyphicon glyphicon-pencil"></span></a>       
+{% endif %}
 <div class="personal_details">
     <li>{{cv.address}}</li>
     <li>{{cv.phone_number}}</li>
@@ -34,7 +37,7 @@
 
 <div class="lists">
     <h3>awards</h3>
-    <p>{{cv.awards}}</p>
+    <p id="awards">{{cv.awards}}</p>
     <h3>involvement</h3>
     <p>{{cv.involvement}}</p>
 </div>

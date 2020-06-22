@@ -58,8 +58,16 @@ def new_cv(request):
         cv = CvForm()          
     return render(request, 'blog/new_cv.html', {'form_cv':cv})
 
-def edit_cv(request):
-    pass
+def cv_edit(request, pk):
+    cv_get = get_object_or_404(CV, pk=pk)
+    if request.method =="POST":
+        cv = CvForm(request.POST,instance=cv_get)
+        if cv.is_valid():
+            post_cv = cv.save(commit=False)
+            post_cv.save()
+            return redirect('cv_detail', pk=cv_get.pk)
+    cv = CvForm(instance=cv_get)
+    return render(request, 'blog/cv_edit.html',{'form_cv':cv,'cv':cv_get})
 
 def cv_detail(request, pk):
     cv = get_object_or_404(CV, pk=pk)

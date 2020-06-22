@@ -7,7 +7,7 @@ import unittest
 class creationTest(unittest.TestCase):
 	
     def setUp(self):
-		self.browser = webdriver.Firefox()
+        self.browser = webdriver.Firefox()
 
     def tearDown(self):
         # this try/excpets checks for the error page and doesnt close it if its there
@@ -19,10 +19,54 @@ class creationTest(unittest.TestCase):
             pass
 
 
-    def test_can_add_info_not_logged_in(self):
+    def login(self, usernameStr, passwordStr):
+        self.browser.get('http://127.0.0.1:8000/')
+        login = self.browser.find_element_by_id('login')
+        login.click()
+        time.sleep(2)
+        username = self.browser.find_element_by_name('username')
+        password = self.browser.find_element_by_name('password')
+
+        username.send_keys(usernameStr)
+        password.send_keys(passwordStr)
+        password.send_keys(Keys.ENTER)
+        time.sleep(2)
+
+
+    def test_edit(self):
+        self.login('anon','boysarebackintown')
+        self.browser.get('http://127.0.0.1:8000/cv')
+        cv_name = self.browser.find_element_by_link_text('Larry Longcakes')
+
+        cv_name.click()
+        time.sleep(2)
+        #--new page--#
+        self.assertIn('Larry Longcakes', self.browser.find_element_by_tag_name('h2').text)
+
+        edit_button = self.browser.find_element_by_id('cv_edit')
+
+        edit_button.click()
+        time.sleep(2)
+        #--new page--#
+        awards = self.browser.find_element_by_name('awards')
+        awards.send_keys(Keys.ENTER)
+        awards.send_keys('worlds longest cake')
+
+        save_button = self.browser.find_element_by_id('submit_button')
+        save_button.click()
+        time.sleep(2)
+        #--new page--#
+        change = self.browser.find_element_by_id('awards').text
+        self.assertIn('worlds longest cake', change)
+        
+
+
+
+
+    def _test_can_add_info_not_logged_in(self): #NOT RUNNING 
         # stacey wants to make an online cv cos she needs a job (broke af)
         # she goes to a website to start creating
-    	self.browser.get('http://127.0.0.1:8000/cv')
+        self.browser.get('http://127.0.0.1:8000/cv')
 
         # she sees and clicks on a new cv button
         new_cv = self.browser.find_element_by_class_name('new_cv_button').text
@@ -36,7 +80,7 @@ class creationTest(unittest.TestCase):
         username = self.browser.find_element_by_name('username')
         password = self.browser.find_element_by_name('password')
 
-        username.send_keys('horatioPistachio')
+        username.send_keys('anon')
         password.send_keys('boysarebackintown') #this is just for test, better luck next time
         password.send_keys(Keys.ENTER)
         time.sleep(2)       
@@ -63,19 +107,19 @@ class creationTest(unittest.TestCase):
 
 
         # she fills out the form
-        name.send_keys("Stacey Shortcakes")
+        name.send_keys("Larry Longcakes")
         address.send_keys("23 bakers avenue, cakelton")
         phone_number.send_keys("0385934811")
-        email.send_keys("longcakes@gmail.com")
+        email.send_keys("shortcakes@gmail.com")
         objective.send_keys("I would like to become the best baker I can be. I hope you can teach me the art")
         skills.send_keys("baking\neating\nthe double wisk technique\nallround good las")
         interests.send_keys("baking\neggs\nfootball\nshoe making")
 
-       
+
         # she clicks on submit personal details
-        
+
         # she sees shes at the experience part
-        
+
 
         # it asks and she gives a job title, company, years active and a decription of responabilites
         job_title = self.browser.find_element_by_name('job_title')
@@ -97,9 +141,9 @@ class creationTest(unittest.TestCase):
         # she clicks add another
 
         # its askes for stuff and she fills it out
-        
+
         # she creates a new education 
-       
+
         # it asks and she adds name of program, inisition of programme, adds years active and a description
         program = self.browser.find_element_by_name('program')
         insitution = self.browser.find_element_by_name('insitution')
@@ -120,7 +164,7 @@ class creationTest(unittest.TestCase):
         # she sees a box to add a list of awards
         awards = self.browser.find_element_by_name('awards')
         awards.send_keys('grannys house comp 2020 3rd place\nbest mud cake\ncoolest flambe')
-        
+
         # she creates a new reference
         ref_name = self.browser.find_element_by_name('ref_name')
         ref_position = self.browser.find_element_by_name('ref_position')
@@ -139,5 +183,5 @@ class creationTest(unittest.TestCase):
         # she is able to see a nicely formated cv in cv homepage
         self.assertIn('Stacey Shortcakes', self.browser.find_element_by_tag_name('h2').text)
         
-    if __name__ == '__main__':
-        unittest.main(warnings='ignore')
+if __name__ == '__main__':
+    unittest.main(warnings='ignore')
