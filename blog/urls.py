@@ -9,5 +9,7 @@ urlpatterns = [
     path('cv', views.cv, name="cv"),
     path('new_cv', views.new_cv, name="new_cv"),
     path('cv/<int:pk>/', views.cv_detail, name='cv_detail'),
-    path('cv/<int:pk>/edit', views.cv_edit,name='cv_edit')
+    path('cv/<int:pk>/edit', views.cv_edit,name='cv_edit'),
+    path ('signup/',views.SignUp, name = 'signup')
+
 ]

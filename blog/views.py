@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, CV
 from django.utils import timezone
 from .forms import PostForm, CvForm
+from django.contrib.auth.forms import UserCreationForm
+
+
 
 # Create your views here.
 def post_list(request):
@@ -72,3 +75,14 @@ def cv_edit(request, pk):
 def cv_detail(request, pk):
     cv = get_object_or_404(CV, pk=pk)
     return render(request, 'blog/cv_detail.html',{'cv': cv})
+
+def SignUp(request):
+    if request.method == "POST":
+        signUpForm = UserCreationForm(request.POST)
+        if signUpForm.is_valid():
+            signUpForm.save()
+            return redirect('/accounts/login')
+    else:
+        signUpForm = UserCreationForm()
+    return render(request, 'registration/signup.html',{'signUpForm':signUpForm})
+    
