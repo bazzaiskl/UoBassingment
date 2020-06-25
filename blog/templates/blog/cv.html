@@ -2,16 +2,16 @@
 
 {% block content %}
 <div class= 'cv_page'>
-    <button class= 'new_cv_button' 
+    <a  class= 'new_cv_button' 
     {% if user.is_authenticated %}
-        onclick="document.location= 'new_cv'" 
+        href= "{% url 'new_cv' %}" 
     {% else %}
-        onclick="document.location= 'accounts/login?next=/new_cv'"
+       href= 'accounts/login?next=/new_cv'
     {% endif %}
     
     >
-        <h3>new</h3>
-    </button>
+        <h2><span class="glyphicon glyphicon-plus"></span></h2>
+</a>
 
 </div>
 {% for cv in cv_view %}

@@ -3,7 +3,8 @@
 {% block content %}
 <h2>{{cv.name}}</h2>
 {% if request.user == cv.username %}      
-        <a class="btn btn-default" href="{% url 'cv_edit' pk=cv.pk %}" id='cv_edit'><span class="glyphicon glyphicon-pencil"></span></a>       
+        <a class="btn btn-default" href="{% url 'cv_edit' pk=cv.pk %}" id='cv_edit'><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class= "btn btn-default" href= "{% url 'cv_delete' pk=cv.pk %}" id = 'cv_delete'><span class="glyphicon glyphicon-trash"></span></a>       
 {% endif %}
 <div class="personal_details">
     <li>{{cv.address}}</li>

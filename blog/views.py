@@ -40,7 +40,18 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
+        if str(request.user) =='AnonymousUser':
+            return redirect('/#plzNoHack')
     return render(request, 'blog/post_edit.html', {'form': form})
+
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    anonBlock = str(request.user)
+    if anonBlock == 'AnonymousUser':    
+        return redirect('/#plzNoHack')
+    else:
+        post.delete()
+        return redirect('/')
 
 def cv(request):
     cv_view = CV.objects.order_by('name')
@@ -75,6 +86,16 @@ def cv_edit(request, pk):
 def cv_detail(request, pk):
     cv = get_object_or_404(CV, pk=pk)
     return render(request, 'blog/cv_detail.html',{'cv': cv})
+
+def cv_delete(request, pk):
+    cv = get_object_or_404(CV, pk=pk)
+    if str(request.user) == str(cv.username):
+        cv.delete()
+        return redirect('/cv/')
+    else:
+        print(str(request.user))
+        print(cv.username)
+        return redirect('/cv/#plzNoHack')
 
 def SignUp(request):
     if request.method == "POST":
